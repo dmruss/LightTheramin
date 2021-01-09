@@ -2,17 +2,19 @@
 
 int photopin=0;// initialize analog pin 0, connected with photovaristor
 int buzzpin=11;// initialize digital pin 11, output regulating the brightness of LED
+int potpin=1;
 //set IO pin for each light segment
-int a=9;
-int b=2;
-int c=3;
+int a=2;
+int b=3;
+int c=4;
 int d=5;
-int e=4;
+int e=6;
 int f=7;
-int g=6;
-int h=8;
+int g=8;
+int h=9;
 
 int val=0;// initialize variable va
+int potval;
 int note;
 int scale[] = { 
                 NOTE_C3,
@@ -171,9 +173,36 @@ void setup()
 }
 void loop()
 {
+  //test
+  /*
+  digitalWrite(a, HIGH);
+  delay(1000);
+  digitalWrite(a,LOW);
+  digitalWrite(b, HIGH);
+  delay(1000);
+  digitalWrite(b,LOW);
+  digitalWrite(c, HIGH);
+  delay(1000);
+  digitalWrite(c,LOW);
+  digitalWrite(d, HIGH);
+  delay(1000);
+  digitalWrite(d,LOW);
+  digitalWrite(e, HIGH);
+  delay(1000);
+  digitalWrite(e,LOW);
+  digitalWrite(f, HIGH);
+  delay(1000);
+  digitalWrite(f,LOW);
+  digitalWrite(g, HIGH);
+  delay(1000);
+  digitalWrite(g,LOW);
+  digitalWrite(h, HIGH);
+  delay(1000);
+  digitalWrite(h,LOW);
   
-  
+  */
 val=analogRead(photopin);// read the analog value of the sensor and assign it to val
+potval=analogRead(potpin);
 // display the value of val
       if ((val>=0) && (val<100))  {                   // Discretization of the pot intervals - in order to assign the note
         note = scale[0];    
@@ -221,7 +250,9 @@ val=analogRead(photopin);// read the analog value of the sensor and assign it to
         note_C();
       }
       
-Serial.println(letter);
+Serial.println(val);
 tone1.play(note);// turn on the LED and set up brightness（maximum output value 255）
-delay(10);// wait for 0.01*/
+delay(100);// wait for 0.01*/
+tone1.stop();
+delay(potval);
 }              
